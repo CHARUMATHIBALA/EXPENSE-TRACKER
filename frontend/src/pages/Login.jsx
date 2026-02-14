@@ -121,7 +121,7 @@ const Login = () => {
             )}
 
             <div className="form-group">
-              <label>Email Address</label>
+              <label>Email-Address</label>
               <div className="input-wrapper">
                 <Mail className="input-icon" size={18} />
                 <input
