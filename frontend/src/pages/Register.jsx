@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { Mail, Lock, User, Eye, EyeOff, UserPlus, TrendingUp, Shield, Zap } from 'lucide-react';
+import Loader from '../components/Loader';
 import './Auth.css';
 
 const Register = () => {

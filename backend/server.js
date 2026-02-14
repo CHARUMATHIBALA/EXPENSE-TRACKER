@@ -16,10 +16,24 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 // Enable CORS
-app.use(cors({
-  origin: process.env.FRONTEND_URL,
+const corsOptions = {
+  origin: function(origin, callback) {
+    const allowedOrigins = [
+      process.env.FRONTEND_URL,
+      process.env.FRONTEND_URL?.replace(/\/$/, ''),
+      'http://localhost:3000',
+      'http://localhost:5173'
+    ].filter(Boolean);
+    
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('CORS policy violation'));
+    }
+  },
   credentials: true
-}));
+};
+app.use(cors(corsOptions));
 
 app.get('/', (req, res) => {
   res.send('Expense Tracker API Running');
